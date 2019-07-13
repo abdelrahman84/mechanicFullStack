@@ -19,7 +19,6 @@ import { ResponseResetComponent } from './components/password/response-reset/res
     SignupComponent,
     ProfileComponent,
     PasswordComponent,
-    RequestRestComponent,
     RequestResestComponent,
     ResponseResetComponent
   ],

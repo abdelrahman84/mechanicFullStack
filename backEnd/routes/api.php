@@ -12,10 +12,11 @@
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+
 Route::group([
 
-    'middleware' => 'api',
-    'prefix' => 'auth'
+    'middleware' => 'api'
 
 ], function ($router) {
 
@@ -23,7 +24,5 @@ Route::group([
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
-
-});
 
 });

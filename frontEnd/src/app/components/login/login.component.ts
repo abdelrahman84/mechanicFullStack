@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http'
+import {User} from '../../_models/user'
 
 @Component({
   selector: 'app-login',
@@ -8,10 +9,7 @@ import {HttpClient} from '@angular/common/http'
 })
 export class LoginComponent implements OnInit {
 
-  public form = {
-    email: null,
-    password: null
-  }
+   public user: User = new User();
 
   constructor(private http:HttpClient) { }
 
@@ -19,8 +17,8 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(){
-     console.log(this.form);
-     return this.http.post('http://localhost:8000/api/auth/login',this.form).subscribe(
+     console.log(this.user);
+     return this.http.post('http://localhost:8000/api/login',this.user).subscribe(
        data => console.log(data),
        error =>console.log(error)
 

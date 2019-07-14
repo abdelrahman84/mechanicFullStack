@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from '@angular/common/http'
 import {User} from '../../_models/user'
 import { Router } from '@angular/router';
+import { JwtAPIService } from 'src/app/_services/jwt-api.service';
 
 @Component({
   selector: 'app-login',
@@ -14,14 +14,14 @@ export class LoginComponent implements OnInit {
 
    public error = null;
 
-  constructor(private http:HttpClient) { }
+  constructor(private jwtAPI:JwtAPIService) { }
 
   ngOnInit() {
   }
 
   onSubmit(){
      console.log(this.user);
-     return this.http.post('http://localhost:8000/api/login',this.user).subscribe(
+     this.jwtAPI.signin(this.user).subscribe(
        data => console.log(data),
        error =>this.handleError(error)
 

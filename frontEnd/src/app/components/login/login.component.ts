@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http'
 import {User} from '../../_models/user'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,9 @@ import {User} from '../../_models/user'
 })
 export class LoginComponent implements OnInit {
 
-   public user: User = new User();
+   private user: User = new User();
+
+   public error = null;
 
   constructor(private http:HttpClient) { }
 
@@ -20,9 +23,14 @@ export class LoginComponent implements OnInit {
      console.log(this.user);
      return this.http.post('http://localhost:8000/api/login',this.user).subscribe(
        data => console.log(data),
-       error =>console.log(error)
+       error =>this.handleError(error)
 
      );
+  }
+
+  handleError(error){
+    this.error=error.error.error;
+    
   }
 
 }
